@@ -1,9 +1,22 @@
+/*
+____conditional rendering_____-
+jsx is not template engine, there is no f else condition like angular
+conditional rendering should do with methods or aplying  logical and operation with non boolean value
+
+Ex - 
+true && false           => true
+true && "abc"           => "abc"
+true && 4               => 4
+true && "wr" && "hi"    => "hi"
+
+*/
+
 import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
     count: 0,
-    tags:['tag1','tag2','tag3','tag4']
+    tags: [] // ["tag1", "tag2", "tag3", "tag4"]
   };
 
   customStyle = {
@@ -12,25 +25,45 @@ class Counter extends Component {
     fontWeight: "bold"
   };
 
+  renderTags() {
+    if (this.state.tags.length == 0) return <h3>no tags found</h3>;
+    return (
+      <ul>
+        {this.state.tags.map(x => (
+          <li key={x}> {x} </li>
+        ))}
+      </ul>
+    );
+  }
+
   render() {
-      let classes = this.getBadgeClasses();
     return (
       <React.Fragment>
-        {/* expression is something thta produces a value*/}
-        <span style={this.customStyle}>{this.state.count} world 1 </span>
-        <button style={ {fontSize:50} } className={classes}>Hello {this.formatCount()} </button>
-
-        <ul>{this.state.tags.map((x ,i )=> <li key={i}>{x}</li>)}</ul>
-
+        {this.state.tags.length === 0 && "Please create new tags"}
+        {this.renderTags()}
       </React.Fragment>
     );
   }
 
-    getBadgeClasses() {
-        let classes = "badge m-2 badge-";
-        classes += this.state.count === 0 ? "warning" : "primary";
-        return classes;
-    }
+  //   render() {
+  //       let classes = this.getBadgeClasses();
+  //     return (
+  //       <React.Fragment>
+  //         {/* expression is something thta produces a value*/}
+  //         <span style={this.customStyle}>{this.state.count} world 1 </span>
+  //         <button style={ {fontSize:50} } className={classes}>Hello {this.formatCount()} </button>
+
+  //         <ul>{this.state.tags.map((x ,i )=> <li key={i}>{x}</li>)}</ul>
+
+  //       </React.Fragment>
+  //     );
+  //   }
+
+  getBadgeClasses() {
+    let classes = "badge m-2 badge-";
+    classes += this.state.count === 0 ? "warning" : "primary";
+    return classes;
+  }
 
   formatCount() {
     const { count } = this.state;

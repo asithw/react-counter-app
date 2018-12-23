@@ -35,8 +35,9 @@ class Counter extends Component {
 //   }
 
 
-  handleIncrement = () => {
-    this.setState({ count: this.state.count + 1 });
+  handleIncrement = (para1) => {
+      console.log(para1)
+    this.setState({ count: this.state.count + 2 });
   };
 
 
@@ -46,7 +47,7 @@ class Counter extends Component {
         {this.state.tags.length === 0 && "Please create new tags"}
         {this.renderTags()}
         {this.state.count}
-        <button onClick={this.handleIncrement}> Increment </button>
+        <button onClick={() => this.handleIncrement( {id:23456} ) }> Increment </button>
       </React.Fragment>
     );
   }
@@ -110,4 +111,7 @@ in the constructor, 'this' is not undefined
 to fix this issue there is 2 solution,
 1 - bind event handlers
 2 - arrow function
+
+// === passing argument to event handler
+using inline function (arrow function)
 */

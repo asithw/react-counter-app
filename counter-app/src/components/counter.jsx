@@ -1,22 +1,9 @@
-/*
-____conditional rendering_____-
-jsx is not template engine, there is no f else condition like angular
-conditional rendering should do with methods or aplying  logical and operation with non boolean value
-
-Ex - 
-true && false           => true
-true && "abc"           => "abc"
-true && 4               => 4
-true && "wr" && "hi"    => "hi"
-
-*/
-
 import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
     count: 0,
-    tags: [] // ["tag1", "tag2", "tag3", "tag4"]
+    tags: ["tag1", "tag2", "tag3", "tag4"]
   };
 
   customStyle = {
@@ -36,11 +23,17 @@ class Counter extends Component {
     );
   }
 
-  render() {
+handleIncrement(){
+    console.log('function clicked!..');
+    //console.log('function clicked!..', this.state.count); // this is not defined
+}
+
+render() {
     return (
       <React.Fragment>
         {this.state.tags.length === 0 && "Please create new tags"}
         {this.renderTags()}
+        <button onClick={this.handleIncrement}> Increment </button>
       </React.Fragment>
     );
   }
@@ -73,3 +66,17 @@ class Counter extends Component {
 }
 
 export default Counter;
+
+
+/*
+____conditional rendering_____-
+jsx is not template engine, there is no f else condition like angular
+conditional rendering should do with methods or aplying  logical and operation with non boolean value
+
+Ex - 
+true && false           => true
+true && "abc"           => "abc"
+true && 4               => 4
+true && "wr" && "hi"    => "hi"
+
+*/

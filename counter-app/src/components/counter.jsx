@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    count: 0
+    count: 0,
+    tags:['tag1','tag2','tag3','tag4']
   };
 
   customStyle = {
@@ -18,6 +19,9 @@ class Counter extends Component {
         {/* expression is something thta produces a value*/}
         <span style={this.customStyle}>{this.state.count} world 1 </span>
         <button style={ {fontSize:50} } className={classes}>Hello {this.formatCount()} </button>
+
+        <ul>{this.state.tags.map((x ,i )=> <li key={i}>{x}</li>)}</ul>
+
       </React.Fragment>
     );
   }

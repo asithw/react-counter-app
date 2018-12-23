@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 
 class Counter extends Component {
+  constructor() {
+    super();
+    //this.handleIncrement = this.handleIncrement.bind(this);
+  }
+
   state = {
     count: 0,
     tags: ["tag1", "tag2", "tag3", "tag4"]
@@ -23,12 +28,18 @@ class Counter extends Component {
     );
   }
 
-handleIncrement(){
-    console.log('function clicked!..');
-    //console.log('function clicked!..', this.state.count); // this is not defined
-}
+//   handleIncrement() {
+//     console.log("function clicked!..");
+//     this.setState({ count: this.state.count++ });
+//     console.log('function clicked!..', this); // this is not defined
+//   }
 
-render() {
+  handleIncrement =() => {
+    console.log('function clicked!..', this); // this is not defined
+  }
+
+
+  render() {
     return (
       <React.Fragment>
         {this.state.tags.length === 0 && "Please create new tags"}
@@ -67,7 +78,6 @@ render() {
 
 export default Counter;
 
-
 /*
 ____conditional rendering_____-
 jsx is not template engine, there is no f else condition like angular
@@ -79,4 +89,23 @@ true && "abc"           => "abc"
 true && 4               => 4
 true && "wr" && "hi"    => "hi"
 
+=============================
+in react , state is not directly modified
+need to use setState method to update state
+
+depending on how function is called 'this' can referenc different object
+
+//obj.method();
+if function is called as a part of method in object, 'this' in that function would always return
+reference to the object
+
+//function();
+if function is called as standalone function without object reference, 'this' by default returns reference
+to the window object, if strict mode is enabled 'this' returns undefuned
+
+
+in the constructor, 'this' is not undefined
+to fix this issue there is 2 solution,
+1 - bind event handlers
+2 - arrow function
 */

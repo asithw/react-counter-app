@@ -34,9 +34,10 @@ class Counter extends Component {
 //     console.log('function clicked!..', this); // this is not defined
 //   }
 
-  handleIncrement =() => {
-    console.log('function clicked!..', this); // this is not defined
-  }
+
+  handleIncrement = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
 
 
   render() {
@@ -44,6 +45,7 @@ class Counter extends Component {
       <React.Fragment>
         {this.state.tags.length === 0 && "Please create new tags"}
         {this.renderTags()}
+        {this.state.count}
         <button onClick={this.handleIncrement}> Increment </button>
       </React.Fragment>
     );

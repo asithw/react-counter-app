@@ -16,10 +16,15 @@ class Counter extends Component {
     console.log("preProps - ", preProps);
     console.log("preState - ", preState);
 
-    if (this.props.counter.value !== preProps.counter.value){
+    if (this.props.counter.value !== preProps.counter.value) {
       //call ajax call() and get new data from server
       //
     }
+  }
+
+  //just before a component is removed from the  Dom 
+  componentWillUnmount(){
+    console.log("counter - component Will Unmount");
   }
 
   getBadgeClasses() {

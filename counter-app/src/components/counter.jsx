@@ -3,13 +3,24 @@ import React, { Component } from "react";
 //controlled component = no state , control by parent component
 
 class Counter extends Component {
-//   state = {
-//     value: this.props.counter.value
-//   };
+  //   state = {
+  //     value: this.props.counter.value
+  //   };
 
-//   handleIncrement = () => {
-//     this.setState({ value: this.state.value + 1 });
-//   };
+  //   handleIncrement = () => {
+  //     this.setState({ value: this.state.value + 1 });
+  //   };
+
+  componentDidUpdate(preProps, preState) {
+    console.log("counter - componentDidUpdate");
+    console.log("preProps - ", preProps);
+    console.log("preState - ", preState);
+
+    if (this.props.counter.value !== preProps.counter.value){
+      //call ajax call() and get new data from server
+      //
+    }
+  }
 
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
@@ -23,11 +34,10 @@ class Counter extends Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log("Counter - render");
 
     return (
       <div>
-    
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button
           onClick={() => this.props.onIncrement(this.props.counter)}
@@ -36,7 +46,10 @@ class Counter extends Component {
           Increment
         </button>
 
-        <button onClick={() => this.props.onDelete(this.props.counter)} className="btn btn-danger btn-sm">
+        <button
+          onClick={() => this.props.onDelete(this.props.counter)}
+          className="btn btn-danger btn-sm"
+        >
           Delete
         </button>
       </div>

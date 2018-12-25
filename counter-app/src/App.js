@@ -9,6 +9,24 @@ class App extends Component {
     counters: [{ id: 0, value: 0 }, { id: 1, value: 2 }, { id: 2, value: 3 }]
   };
 
+  constructor(props) {
+    super(props);
+    console.log("App - constructor");
+     this.state.counters = [{ id: 30, value: 30 }  ];
+    //in the constructor we set this.state directly
+    //BUT setState() method can only be called when a component is rendered and placed in the Dom (not here)
+   
+    //console.log(this.props);
+    //this.props is undefined unless it is pass as parameter
+  }
+
+//called after  component is rendered into the Dom 
+  componentDidMount(){
+    //getAjaxCall()
+    // this.setState({ counters });
+    console.log("App - componentDidMount");
+  }
+ 
   handleIncrement = counter => {
     //https://stackoverflow.com/questions/23436437/why-can-i-change-value-of-a-constant-in-javascript
 
@@ -44,12 +62,15 @@ class App extends Component {
   };
 
   render() {
+    console.log("App - render");
     return (
       <React.Fragment>
-        <NavBar totalCounters = {this.state.counters.filter(x => x.value !==0).length}/>
+        <NavBar
+          totalCounters={this.state.counters.filter(x => x.value !== 0).length}
+        />
         <main className="containers">
           <Counters
-            counters = {this.state.counters}
+            counters={this.state.counters}
             onIncrement={this.handleIncrement}
             onReset={this.handleReset}
             onDelete={this.handleDelete}
@@ -61,3 +82,10 @@ class App extends Component {
 }
 
 export default App;
+
+
+// App - constructor
+// App - render
+// Counters - render
+// Counter - render
+// App - componentDidMount
